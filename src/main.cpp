@@ -1,11 +1,23 @@
-#include "trygonometria.h"
+#include<LaborkaConfig.h>
 #include<iostream>
+#ifdef USE_TRIGONOMETRY_DEGREE
+	#include "trygonometria.h"
+#else
+	#include <cmath>
+#endif
 
 int main()
 {
-	std::cout<<"Sinus 30 stopni: "<< degreemath::sin(30) <<std::endl;
-	std::cout<<"Cosinus 45 stopni: "<< degreemath::cos(45)<<std::endl;
-	std::cout<<"Sinus 60 stopni: "<< degreemath::tg(60)<<std::endl;
-	std::cout<<"Sinus 90 stopni: "<< degreemath::ctg(90)<<std::endl;
+	double result;
+	#ifdef USE_TRIGONOMETRY_DEGREE
+		std::cout<<"Sinus 45 stopni: ";
+		result = degreemath::sin(45.0);
+	#else
+		std::cout<<"Sinus pi/4 radianow: ";
+		result = std::sin(3.14/4.0);
+	#endif
+
+	std::cout << result <<std::endl;
+
 	return 0;
 }
